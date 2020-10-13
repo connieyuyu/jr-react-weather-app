@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-const api = {
-  key: '756ad1856cdebbf61b23cdccbab2a5b9',
-  base: 'http://api.openweathermap.org/data/2.5/',
-};
-
 class Weather extends Component {
   constructor() {
     super();
