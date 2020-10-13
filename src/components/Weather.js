@@ -1,38 +1,50 @@
 import React, { Component } from 'react';
+import Current from './Current';
+import Forecast from './Forecast';
+
+const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
+const API_URL = 'https://api.openweathermap.org/data/2.5/onecall?';
 
 class Weather extends Component {
   constructor() {
     super();
+    this.state = {
+      temperature: 0,
+      humidity: 0,
+      wind: 0,
+      description: '',
+      forecast: [],
+    };
   }
 
-  // componentDidMount() {
-  //   fetch(`${api.base}weather?q=${query}&units=metric&appid=${api.key}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //     });
-  // }
+  componentDidMount() {
+    fetch(
+      `${API_URL}lat=-27.468228&lon=153.024203&exclude=minutely,hourly&units=metric&appid=${API_KEY}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          temperature: data.current.temp,
+          humidity: data.current.humidity,
+          wind: data.current.wind_speed,
+          description: data.current.weather[0].main,
+          forecast: data.daily,
+        });
+        console.log(data);
+      });
+  }
 
   render() {
+    const { temperature, humidity, wind, description, forecast } = this.state;
     return (
       <>
-        <h1>Brisbane</h1>
-        <div className="cafd_main_left">
-          <h2>12</h2>
-          <p>Cloudy</p>
-          <div>
-            <ul>
-              <li>
-                <h4>Humidity</h4>
-                <p>64%</p>
-              </li>
-              <li>
-                <h4>Wind</h4>
-                <p>12 K/M</p>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <Current
+          temperature={temperature}
+          humidity={humidity}
+          wind={wind}
+          description={description}
+        />
+        <Forecast forecase={forecast} />
       </>
     );
   }
