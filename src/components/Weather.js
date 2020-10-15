@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Current from './Current';
-import Forecast from './Forecast';
+import AllForecast from './AllForecast';
 
 const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const API_URL = 'https://api.openweathermap.org/data/2.5/onecall?';
@@ -15,6 +15,7 @@ class Weather extends Component {
       description: '',
       forecast: [],
     };
+    this.formateAllForecast = this.formateAllForecast.bind(this);
   }
 
   componentDidMount() {
@@ -34,8 +35,12 @@ class Weather extends Component {
       });
   }
 
+  formateAllForecast = () => {
+    return (this.state.forecast.slice(1, 6).map((dailyData, index) => <AllForecast dailyData={dailyData} key={index} />))
+  }
+
   render() {
-    const { temperature, humidity, wind, description, forecast } = this.state;
+    const { temperature, humidity, wind, description,forecast } = this.state;
     return (
       <>
         <Current
@@ -44,7 +49,7 @@ class Weather extends Component {
           wind={wind}
           description={description}
         />
-        <Forecast forecase={forecast} />
+        {this.formateAllForecast()}
       </>
     );
   }
