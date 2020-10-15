@@ -40,7 +40,7 @@ class Weather extends Component {
   }
 
   render() {
-    const { temperature, humidity, wind, description,forecast } = this.state;
+    const { temperature, humidity, wind, description } = this.state;
     return (
       <>
         <Current
