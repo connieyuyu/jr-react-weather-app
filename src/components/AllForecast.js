@@ -11,17 +11,15 @@ const AllForecast = (props) => {
 
   return (
     <>
-      <ul>
-        <li key={index}>
-          <h3>{moment(date).format('dddd')}</h3>
-          <p>{moment(date).format('MMM Do YY')}</p>
-          <img src={iconURL} alt={dailyData.weather[0].main}/>
-          <h2>{Math.round(dailyData.temp.day)} °C</h2>
-          <p>{dailyData.weather[0].description}</p>
-        </li>
-      </ul>
+      <li key={index}>
+        <h3>{moment(date).format('dddd').slice(0,3).toUpperCase()}</h3>
+        <p>{moment(date).format('DD MM')}</p>
+        <img src={iconURL} alt={dailyData.weather[0].main}  />
+        <h2>{Math.round(dailyData.temp.day)} °</h2>
+        <p>{dailyData.weather[0].description}</p>
+      </li>
     </>
-  )
+  );;
 }
 
 export default AllForecast;

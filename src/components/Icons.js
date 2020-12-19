@@ -1,13 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCloud,
-  faSun,
-  faCloudRain,
-  faUmbrella,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faUserCircle, faBars } from '@fortawesome/free-solid-svg-icons';
 
-export const Sun = <FontAwesomeIcon icon={faSun} />;
-export const Cloud = <FontAwesomeIcon icon={faCloud} />;
-export const Rain = <FontAwesomeIcon icon={faUmbrella} />;
-export const Storm = <FontAwesomeIcon icon={faCloudRain} />;
+export const twitterIcon = (
+  <FontAwesomeIcon icon={faTwitter} className="twitterIcon" />
+);
+export const userIcon = (
+  <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
+);
+export const burgerMenuIcon = (
+  <FontAwesomeIcon icon={faBars} className="burgerMenuIcon" />
+);
+

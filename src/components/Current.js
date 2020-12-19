@@ -1,15 +1,13 @@
 import React from 'react';
 
 const Current = props => {
-  const { temperature, description, humidity, wind } = props;
+  const { temperature, description, humidity, wind, city } = props;
 
   return (
     <>
-      <h1>Brisbane</h1>
-      <div className="cafd_main_left">
-        <h2>{temperature}</h2>
+      <div className="card__main__left">
+        <h2>{Math.round(temperature)}</h2>
         <p>{description}</p>
-        <div>
           <ul>
             <li>
               <h4>Humidity</h4>
@@ -20,7 +18,9 @@ const Current = props => {
               <p>{wind} K/M</p>
             </li>
           </ul>
-        </div>
+      </div>
+      <div className="card__main__right">
+        <h1>{city}</h1>
       </div>
     </>
   );
